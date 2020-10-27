@@ -1,0 +1,55 @@
+@import "../../shared/core/variables.scss";
+
+.head {
+    display:grid;
+    height: 50px;
+    font-size: 30px;
+    font-weight: 300;
+    text-align: center;    
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.section {
+    display:grid;
+    min-height: 500px;
+    align-items: center;
+
+    .title {
+        font-size: 40px;        
+        font-weight: 300;
+        text-align: center;
+        margin: 10px 0px;
+    }
+
+    .progress{
+        text-align: center;
+        font-weight: 100;
+        .precentage{
+            font-size: 80px;
+            line-height: 0.9;
+        }
+
+        .completed{
+            font-size: 35px;
+        }
+    }
+
+    .cancel {
+        display: grid;
+        grid-template-columns: auto;
+        align-items: center;
+        margin: 0px 60px;
+        margin-bottom: 10px;
+        .cancelButton {
+            text-align: center;
+            margin-left: 10px;
+            height: 56px;
+            margin: 0px 200px;
+        }
+    }
+
+    .MuiTypography-h3{
+        font-weight: 200;;
+    }
+}

@@ -1,0 +1,11 @@
+.page {
+    position: absolute;
+    width: 100%;
+    display: grid;
+    grid-template-rows: min-content auto;
+
+    .pageContent {
+        padding: 20px;
+        overflow: auto;
+    }
+}

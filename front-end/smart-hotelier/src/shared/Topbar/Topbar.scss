@@ -1,0 +1,44 @@
+@import "../core/variables.scss";
+
+.pageHeader {
+    display: grid;
+    grid-template-columns: 50% 50%;
+    align-items: center;
+    height: 80px;
+
+    .logo {
+        padding: 10px 0px;
+        img {
+            height: 60px;
+            padding-left: 10px;
+        }
+    }
+
+    .options {
+        text-align: right;
+        display: grid;
+        grid-template-columns: auto;
+        margin-left: 20px;
+        font-family: $primaryFont;
+        font-size: 1.8em;
+
+        .user{
+            padding: 15px 0px;
+            img{
+                height: 50px;
+            }
+        }
+
+
+    }
+
+    button {
+        i {
+            margin-right: 15px;
+        }
+
+        font-size: 1em;
+        white-space: nowrap;
+        padding: 10px 20px;
+    }
+}

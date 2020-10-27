@@ -1,0 +1,10 @@
+@import "../core/variables.scss";
+
+
+.pageFooter {
+    display: grid;
+    grid-template-columns: auto;
+    align-items: center;
+    height: 80px;
+    text-align: center;
+}

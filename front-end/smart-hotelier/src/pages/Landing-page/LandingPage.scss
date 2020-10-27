@@ -1,0 +1,77 @@
+@import "../../shared/core/variables.scss";
+
+.section {
+    background: $secondaryBackgroundColor;
+    min-height: 500px;
+
+    .title {
+        font-size: 40px;
+        text-align: center;
+        margin-bottom: 10px;
+    }
+
+    .description {
+        text-align: center;
+        font-size: 15px;
+        margin: 0px 60px;
+        margin-bottom: 40px;
+    }
+
+    .searchBox {
+        display: grid;
+        grid-template-columns: 90% 10%;
+        align-items: center;
+        margin: 0px 60px;
+        margin-bottom: 10px;
+
+        TextField{
+            width: fit-content;
+        }
+
+        .addButton{
+            width: fit-content;
+            margin-left: 10px;
+            height: 56px;
+            padding: 0px 30px;
+        }
+    }
+
+    .resultBox {
+        display: grid;
+        grid-template-columns: 90% 10%;
+        align-items: center;
+        margin: 0px 60px;
+        margin-bottom: 10px;
+
+        .result{
+            border-style: dashed;
+            border-width: thin;
+            padding: 13px 14px;
+            border-color: $secondaryFontColor;
+            border-radius: 5px;
+            font-size: 20px;
+            text-align: center;
+        }
+
+        .removeButton{
+            width: fit-content;
+            margin-left: 10px;
+            height: 56px;
+            padding: 0px 15px;
+        }
+    }
+
+    .generate{
+        display: grid;
+        grid-template-columns: auto;
+        align-items: center;        
+        margin: 0px 60px;
+        margin-bottom: 10px;
+        .generateButton{
+            text-align: center;
+            margin-left: 10px;
+            height: 56px;
+            margin: 0px 200px; 
+        }
+    }
+}

@@ -1,0 +1,17 @@
+.contain {
+    display: grid;
+    justify-content: center;
+    .chart-section {
+        display: grid;
+        min-height: 500px;
+        width: 650px;
+        padding: 0px 20px;
+
+        .title {
+            font-size: 20px;
+            font-weight: 300;
+            text-align: center;
+            margin: 10px 0px;
+        }
+    }
+}

@@ -1,0 +1,17 @@
+@import '../../shared/core/variables.scss';
+
+.head {
+    display:grid;
+    height: 50px;
+    font-size: 30px;
+    font-weight: 300;
+    text-align: center;    
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.row-2{
+    display:grid;
+    grid-template-columns: 50% 50%;
+    margin-bottom: 10px;
+}
