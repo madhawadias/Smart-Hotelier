@@ -1,7 +1,4 @@
-@import "../../shared/core/variables.scss";
-
 .section {
-    background: $secondaryBackgroundColor;
     min-height: 500px;
 
     .title {
@@ -47,7 +44,6 @@
             border-style: dashed;
             border-width: thin;
             padding: 13px 14px;
-            border-color: $secondaryFontColor;
             border-radius: 5px;
             font-size: 20px;
             text-align: center;

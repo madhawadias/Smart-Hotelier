@@ -1,3 +1,5 @@
 /venv
+/.vscode
+/.idea
 /back_end/temp_data
 /back_end/sample_scripts

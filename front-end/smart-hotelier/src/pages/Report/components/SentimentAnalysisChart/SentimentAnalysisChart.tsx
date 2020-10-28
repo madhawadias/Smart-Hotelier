@@ -3,6 +3,8 @@ import './SentimentAnalysisChart.scss'
 import ReactApexChart from 'react-apexcharts'
 import { Paper } from '@material-ui/core'
 
+import ReportApi from '../../../../core/report-api'
+
 
 export default class SentimentAnalysisChart extends Component<{ theme: string }> {
 
@@ -87,6 +89,51 @@ export default class SentimentAnalysisChart extends Component<{ theme: string }>
         }
     }
 
+    componentDidMount() {
+        // this.getSentimentReport()
+    }
+
+    async getSentimentReport() {
+        let sentimentReport = []
+
+        try {
+            sentimentReport = await ReportApi.getSentimentReport()
+        } catch (err) {
+            console.log("sentiment report api error")
+        }
+
+
+        if (sentimentReport.length > 1) {
+
+            let newSentimentReport: object[] = []
+
+            for (let i = 0; i < sentimentReport.length; i++) {
+
+                let singleObject = {
+                    name: sentimentReport[i].name,
+                    type: 'column',
+                    data: sentimentReport[i].data
+                }
+
+                newSentimentReport.push(singleObject)
+            }
+
+            this.setState({
+                series: newSentimentReport
+            })
+        }
+        else {
+            this.setState({
+                series: [{
+                    name: sentimentReport.name,
+                    type: 'column',
+                    data: sentimentReport.data
+                }]  
+            });
+        }
+
+    }
+
     render() {
         return (
             <div className='contain'>
@@ -97,7 +144,7 @@ export default class SentimentAnalysisChart extends Component<{ theme: string }>
                     <ReactApexChart options={this.state.options} series={this.state.series} type="bar" height={350} width={600} />
                 </Paper>
             </div>
-           
+
         )
     }
 }
