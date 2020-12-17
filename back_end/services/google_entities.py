@@ -12,9 +12,11 @@ from langdetect import detect
 class GoogleEntities(object):
     def __init__(self):
         try:
-            os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = '../temp_data/test.json'
+            os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = 'C:/Users/ashen/Documents/kaliso/Smart-Hotelier/back_end' \
+                                                           '/temp_data/test.json '
             self.credentials = service_account.Credentials.from_service_account_file(
-                'C:/Users/ashen/Documents/kaliso/sentiment/test.json')
+                'C:/Users/ashen/Documents/kaliso/Smart'
+                '-Hotelier/back_end/temp_data/test.json')
             os.environ["PROJECT_ID"] = "quilt-apps"
             self.params = {'score_threshold': '0.1'}
             self.language_service_client = language_v1.LanguageServiceClient()
@@ -31,14 +33,17 @@ class GoogleEntities(object):
         type_ = enums.Document.Type.PLAIN_TEXT
         document = {"content": text, "type": type_}
         encoding_type = enums.EncodingType.UTF8
-        response = self.language_service_client.analyze_entities(document, encoding_type=encoding_type)
         entities_name = []
         entities_type = []
-        for entity in response.entities:
-            entities_name.append(entity.name)
-            entities_type.append(enums.Entity.Type(entity.type).name)
-        results = {"name": entities_name, "type": entities_type}
-        return results
+        try:
+            response = self.language_service_client.analyze_entities(document, encoding_type=encoding_type)
+            for entity in response.entities:
+                entities_name.append(entity.name)
+                entities_type.append(enums.Entity.Type(entity.type).name)
+            results = {"name": entities_name, "type": entities_type}
+            return results
+        except Exception as err:
+            print('entity 2', err)
 
     def translate_text(self, text):
         try:
@@ -46,7 +51,7 @@ class GoogleEntities(object):
                 lang = detect(text)
                 if lang != 'en':
                     translation = self.translate_client.translate(text, target_language='en')
-                    return translation['translatedText']
+                    return translation["translatedText"]
                 else:
                     return text
             else:

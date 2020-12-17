@@ -1,6 +1,5 @@
 import re
 
-from google.api_core import exceptions
 from google.cloud import language_v1
 from google.cloud import translate_v2 as translate
 from google.cloud.language_v1 import enums
@@ -9,7 +8,8 @@ from google.oauth2 import service_account
 
 class SentimentAnalysisGlobal:
     def __init__(self):
-        credentials = service_account.Credentials.from_service_account_file('../temp_data/test.json')
+        credentials = service_account.Credentials.from_service_account_file('C:/Users/ashen/Documents/kaliso/Smart'
+                                                                            '-Hotelier/back_end/temp_data/test.json')
         self.client = language_v1.LanguageServiceClient(credentials=credentials)
         self.translate_client = translate.Client(credentials=credentials)
 
@@ -22,12 +22,7 @@ class SentimentAnalysisGlobal:
             print(err)
 
     def analyze_global_sentiment(self, text_content):
-        """
-        Analyzing Sentiment in a String
 
-        Args:
-          text_content The text content to analyze
-        """
         try:
             try:
                 # Available types: PLAIN_TEXT, HTML
@@ -42,11 +37,11 @@ class SentimentAnalysisGlobal:
                     text_sentiment = round(response.document_sentiment.score, 2)
                     text_magnitude = round(response.document_sentiment.magnitude, 2)
                     return (text_sentiment, text_magnitude)
-                except exceptions.ClientError:
-                    pass
-
+                except Exception as err:
+                    print('translate 1', err)
 
             except:
+                print('translate 2', err)
                 # text_content_translated = self.translate_text(text_content)
                 text_content_translated = text_content
                 type_ = enums.Document.Type.PLAIN_TEXT
@@ -57,10 +52,10 @@ class SentimentAnalysisGlobal:
                     text_sentiment = round(response.document_sentiment.score, 2)
                     text_magnitude = round(response.document_sentiment.magnitude, 2)
                     return (text_sentiment, text_magnitude)
-                except:
-                    pass
-        except:
-            pass
+                except Exception as err:
+                    print('translate 3', err)
+        except Exception as err:
+            print('translate 4', err)
 
     def clean_text(self, message):
         try:

@@ -1,22 +1,27 @@
 import axios from 'axios';
 
 export default class HttpApi {
-    private host = 'http://localhost:2020/api';
+    private host = 'http://localhost:5000/api';
     private token: string = '';
 
     setToken(token: string) {
         axios.defaults.headers.common['authorization'] = token;
     }
 
-    async sendGetRequest(url: string) {
-        const res = await axios.get(`${this.host}${url}`);
-        const { success } = res.data;
+    async sendGetRequest(url: string): Promise<any> {
+        var result
 
-        if (success) {
-            return res.data;
-        } else {
-            const { errMessage } = res.data;
-            throw new Error(errMessage);
+        await axios.get(`${this.host}${url}`).then(
+            (response) => {
+                result = response.data;
+            },
+            (error) => {
+                throw new Error(error)
+            }
+        );
+
+        if(result){
+            return result
         }
     }
 

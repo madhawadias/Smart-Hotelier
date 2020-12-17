@@ -5,19 +5,17 @@ import { Paper } from '@material-ui/core'
 
 import ReportApi from '../../../../core/report-api'
 
+export interface SentimentObject{
+    name: string;
+    type: string;
+    data: Array<number>;
+    wordcloud?:Array<object>
+}
 
 export default class SentimentAnalysisChart extends Component<{ theme: string }> {
 
     state = {
-        series: [{
-            name: 'Kingsbury',
-            type: 'column',
-            data: [20, 30, 50]
-        }, {
-            name: 'Galadari',
-            type: 'column',
-            data: [50, 10, 40]
-        }],
+        series: [],
         options: {
             theme: {
                 mode: this.props.theme
@@ -90,11 +88,13 @@ export default class SentimentAnalysisChart extends Component<{ theme: string }>
     }
 
     componentDidMount() {
-        // this.getSentimentReport()
+         this.getSentimentReport()
+        
     }
 
     async getSentimentReport() {
-        let sentimentReport = []
+        let sentimentReport: SentimentObject[] = []
+        let newSentimentReport: SentimentObject[] = []
 
         try {
             sentimentReport = await ReportApi.getSentimentReport()
@@ -102,35 +102,19 @@ export default class SentimentAnalysisChart extends Component<{ theme: string }>
             console.log("sentiment report api error")
         }
 
+        for (let i = 0; i < sentimentReport.length; i++) {
 
-        if (sentimentReport.length > 1) {
-
-            let newSentimentReport: object[] = []
-
-            for (let i = 0; i < sentimentReport.length; i++) {
-
-                let singleObject = {
-                    name: sentimentReport[i].name,
-                    type: 'column',
-                    data: sentimentReport[i].data
-                }
-
-                newSentimentReport.push(singleObject)
+            let singleObject = {
+                name: sentimentReport[i].name,
+                type: 'column',
+                data: sentimentReport[i].data
             }
 
-            this.setState({
-                series: newSentimentReport
-            })
+            newSentimentReport.push(singleObject)
         }
-        else {
-            this.setState({
-                series: [{
-                    name: sentimentReport.name,
-                    type: 'column',
-                    data: sentimentReport.data
-                }]  
-            });
-        }
+        this.setState({
+            series: newSentimentReport
+        })
 
     }
 
